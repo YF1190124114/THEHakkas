@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>擂茶五味 - Lei Cha Heritage Story</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navigation" class="nav-hidden">
+        <div class="nav-container">
+            <button class="nav-item active" data-section="title">序</button>
+            <button class="nav-item" data-section="flavor1">破碗</button>
+            <button class="nav-item" data-section="flavor2">芝麻</button>
+            <button class="nav-item" data-section="flavor3">茶盐</button>
+            <button class="nav-item" data-section="flavor4">改革</button>
+            <button class="nav-item" data-section="flavor5">青春</button>
+            <button class="nav-item" data-section="ending">你的味道</button>
+        </div>
+    </nav>
+
+    <!-- Audio Controls -->
+    <div id="audio-controls">
+        <button id="audio-toggle" aria-label="Toggle ambient audio">🔊</button>
+        <audio id="ambient-audio" loop>
+            <source src="audio/ambient-tea-house.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+
+    <!-- Title Page -->
+    <section id="title" class="section title-section active">
+        <div class="parallax-layer background-layer"></div>
+        <div class="parallax-layer middle-layer">
+            <div class="tea-steam"></div>
+        </div>
+        <div class="content-layer">
+            <div class="title-content">
+                <div class="hand-bowl-container">
+                    <div class="muddy-hand">
+                        <div class="porcelain-bowl">
+                            <div class="tea-surface"></div>
+                            <div class="steam-effect"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="title-text fade-in-slow">
+                    <h1 class="main-title">擂茶五味</h1>
+                    <p class="subtitle">Lei Cha - Five Flavors of Heritage</p>
+                    <div class="voiceover-text">
+                        <p>"我叫阿飞，出生于河洛……像极了我们不断迁徙的命运。"</p>
+                        <p class="floating-subtitle">擂茶，不只是茶。</p>
+                    </div>
+                </div>
+                <button class="scroll-indicator" aria-label="Scroll to begin story">
+                    <span>开始故事</span>
+                    <div class="scroll-arrow"></div>
+                </button>
+            </div>
+        </div>
+        <audio class="section-audio" preload="metadata">
+            <source src="audio/boiling-water-grinding.mp3" type="audio/mpeg">
+        </audio>
+    </section>
+
+    <!-- Flavor One: Broken Bowl -->
+    <section id="flavor1" class="section flavor-section">
+        <div class="parallax-layer background-layer migration-bg"></div>
+        <div class="parallax-layer middle-layer">
+            <div class="heat-rising-effect"></div>
+            <canvas id="migration-map" width="1200" height="800"></canvas>
+        </div>
+        <div class="content-layer">
+            <article class="flavor-content">
+                <header class="flavor-header">
+                    <h2 class="flavor-title">第一味：破碗</h2>
+                    <p class="flavor-theme">Migration from Central Plains</p>
+                </header>
+                <div class="story-content">
+                    <div class="interactive-map">
+                        <div class="route-point" data-location="henan">
+                            <span class="location-name">河南</span>
+                            <div class="location-info">
+                                <p>中原故土，客家之源</p>
+                            </div>
+                        </div>
+                        <div class="route-point" data-location="hubei">
+                            <span class="location-name">湖北</span>
+                        </div>
+                        <div class="route-point" data-location="jiangxi">
+                            <span class="location-name">江西</span>
+                        </div>
+                        <div class="route-point" data-location="guangdong">
+                            <span class="location-name">广东</span>
+                        </div>
+                    </div>
+                    <div class="ancestor-scroll">
+                        <div class="ancestor-names">
+                            <span class="ancestor-name">李氏先祖</span>
+                            <span class="ancestor-name">王氏族人</span>
+                            <span class="ancestor-name highlight">曾祖父</span>
+                            <span class="ancestor-name">陈氏家族</span>
+                        </div>
+                    </div>
+                    <div class="interview-placeholder">
+                        <video class="ancestor-interview" controls preload="metadata" poster="images/grandfather-interview-poster.jpg">
+                            <source src="video/grandfather-interview.mp4" type="video/mp4">
+                            <track kind="subtitles" src="subtitles/grandfather-zh.vtt" srclang="zh" label="中文">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+            </article>
+        </div>
+        <audio class="section-audio" preload="metadata">
+            <source src="audio/weapons-horses-fire.mp3" type="audio/mpeg">
+        </audio>
+    </section>
+
+    <!-- Flavor Two: Sesame -->
+    <section id="flavor2" class="section flavor-section">
+        <div class="parallax-layer background-layer ocean-bg"></div>
+        <div class="parallax-layer middle-layer">
+            <div class="ship-silhouette"></div>
+            <div class="railway-construction"></div>
+        </div>
+        <div class="content-layer">
+            <article class="flavor-content">
+                <header class="flavor-header">
+                    <h2 class="flavor-title">第二味：芝麻</h2>
+                    <p class="flavor-theme">Migration Overseas - Gold Rush Era</p>
+                </header>
+                <div class="story-content">
+                    <div class="breaking-bowl-scene">
+                        <div class="uncle-silhouette"></div>
+                        <div class="broken-bowl-pieces"></div>
+                    </div>
+                    <div class="letter-unfold">
+                        <div class="old-letter">
+                            <div class="letter-content">
+                                <p class="letter-text">亲爱的家人，我已安全抵达金山...</p>
+                                <div class="ship-ticket">
+                                    <span class="ticket-text">Ship Ticket - San Francisco</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="railway-map">
+                        <div class="railway-line"></div>
+                        <div class="worker-gravestone" data-worker="李明">
+                            <span class="gravestone-text">李明 1845-1867</span>
+                            <div class="worker-info">
+                                <p>Central Pacific Railroad Worker</p>
+                                <p>Died building the transcontinental railroad</p>
+                            </div>
+                        </div>
+                        <div class="worker-gravestone" data-worker="陈华">
+                            <span class="gravestone-text">陈华 1842-1869</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+        <audio class="section-audio" preload="metadata">
+            <source src="audio/ship-horn-sea-wind.mp3" type="audio/mpeg">
+        </audio>
+    </section>
+
+    <!-- Flavor Three: Tea Salt -->
+    <section id="flavor3" class="section flavor-section">
+        <div class="parallax-layer background-layer tulou-bg"></div>
+        <div class="content-layer">
+            <article class="flavor-content">
+                <header class="flavor-header">
+                    <h2 class="flavor-title">第三味：茶盐</h2>
+                    <p class="flavor-theme">Cultural Identity & Language Boundary</p>
+                </header>
+                <div class="story-content">
+                    <div class="split-screen">
+                        <div class="inside-tulou">
+                            <h3>土楼内 - 客家话</h3>
+                            <div class="dialect-buttons">
+                                <button class="voice-clip" data-audio="hakka-greeting">
+                                    <span class="hakka-text">你好无？</span>
+                                    <span class="translation">How are you?</span>
+                                </button>
+                                <button class="voice-clip" data-audio="hakka-tea">
+                                    <span class="hakka-text">来食擂茶</span>
+                                    <span class="translation">Come drink Lei Cha</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="outside-market">
+                            <h3>市场外 - 广东话</h3>
+                            <div class="dialect-buttons">
+                                <button class="voice-clip" data-audio="cantonese-greeting">
+                                    <span class="cantonese-text">你好吗？</span>
+                                    <span class="translation">How are you?</span>
+                                </button>
+                                <button class="voice-clip" data-audio="cantonese-tea">
+                                    <span class="cantonese-text">饮茶</span>
+                                    <span class="translation">Drink tea</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="philosophy-text">
+                        <p class="guest-host-text">客人与主人的界限，在一碗擂茶中消融。</p>
+                        <p class="kindness-text">以茶待客，以心换心。</p>
+                    </div>
+                </div>
+            </article>
+        </div>
+        <audio class="section-audio" preload="metadata">
+            <source src="audio/overlapping-dialects.mp3" type="audio/mpeg">
+        </audio>
+    </section>
+
+    <!-- Flavor Four: Reform -->
+    <section id="flavor4" class="section flavor-section">
+        <div class="parallax-layer background-layer city-bg"></div>
+        <div class="parallax-layer middle-layer">
+            <div class="walking-silhouettes"></div>
+        </div>
+        <div class="content-layer">
+            <article class="flavor-content">
+                <header class="flavor-header">
+                    <h2 class="flavor-title">第四味：改革</h2>
+                    <p class="flavor-theme">1981 - Leaving Mountains for Pearl River Delta</p>
+                </header>
+                <div class="story-content">
+                    <div class="grandparents-journey">
+                        <div class="silhouette-animation">
+                            <div class="grandparent-silhouette male"></div>
+                            <div class="grandparent-silhouette female"></div>
+                        </div>
+                        <div class="journey-narration">
+                            <button class="narration-trigger" data-narration="leaving-mountains">
+                                <span>播放旁白</span>
+                            </button>
+                            <div class="narration-text">
+                                <p>"1981年，爷爷奶奶离开了祖辈生活的山区，走向珠江三角洲的城市。"</p>
+                                <p>"他们带着一包擂茶的种子，和对未来的希望。"</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="city-transition">
+                        <div class="mountain-to-city"></div>
+                    </div>
+                </div>
+            </article>
+        </div>
+        <audio class="section-audio" preload="metadata">
+            <source src="audio/city-traffic-footsteps.mp3" type="audio/mpeg">
+        </audio>
+    </section>
+
+    <!-- Flavor Five: Youth -->
+    <section id="flavor5" class="section flavor-section">
+        <div class="parallax-layer background-layer modern-bg"></div>
+        <div class="content-layer">
+            <article class="flavor-content">
+                <header class="flavor-header">
+                    <h2 class="flavor-title">第五味：青春</h2>
+                    <p class="flavor-theme">Modern Youth's Reflection on Heritage</p>
+                </header>
+                <div class="story-content">
+                    <div class="personal-reflection">
+                        <video class="personal-video" controls preload="metadata" poster="images/youth-reflection-poster.jpg">
+                            <source src="video/youth-reflection.mp4" type="video/mp4">
+                            <track kind="subtitles" src="subtitles/youth-reflection-zh.vtt" srclang="zh" label="中文">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="ai-illustration">
+                        <div class="animated-scene">
+                            <div class="fire-animation"></div>
+                            <div class="grinding-animation"></div>
+                            <div class="youth-silhouette"></div>
+                        </div>
+                    </div>
+                    <div class="heritage-reflection">
+                        <p>"在这个快速变化的时代，我们如何保持与祖先的连接？"</p>
+                        <p>"擂茶不仅是一种饮品，更是一种传承的方式。"</p>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Final Section: Your Flavor -->
+    <section id="ending" class="section ending-section">
+        <div class="parallax-layer background-layer family-tree-bg"></div>
+        <div class="content-layer">
+            <article class="ending-content">
+                <header class="ending-header">
+                    <h2 class="ending-title">你的味道</h2>
+                    <p class="ending-subtitle">Your Flavor - Add Your Hakka Memory</p>
+                </header>
+                <div class="interactive-contribution">
+                    <form id="memory-form" class="memory-form">
+                        <div class="form-group">
+                            <label for="memory-title">记忆标题 (Memory Title)</label>
+                            <input type="text" id="memory-title" name="title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="memory-text">你的故事 (Your Story)</label>
+                            <textarea id="memory-text" name="story" rows="5" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="memory-location">地点 (Location)</label>
+                            <input type="text" id="memory-location" name="location">
+                        </div>
+                        <div class="form-group">
+                            <label for="memory-image">图片 (Image - Optional)</label>
+                            <input type="file" id="memory-image" name="image" accept="image/*">
+                        </div>
+                        <button type="submit" class="submit-memory">添加到家族树 (Add to Family Tree)</button>
+                    </form>
+                    <div id="family-tree" class="family-tree">
+                        <div class="tree-trunk"></div>
+                        <div class="tree-branches">
+                            <div class="memory-leaf sample-leaf" data-memory="sample">
+                                <span class="leaf-title">示例记忆</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="tea-bowl-ripples" class="tea-bowl-container">
+                        <div class="tea-bowl">
+                            <div class="tea-surface">
+                                <div class="ripple-effect"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-content">
+            <div class="tea-grinding-animation"></div>
+            <p class="loading-text">正在准备擂茶...</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
