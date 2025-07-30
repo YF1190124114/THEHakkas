@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Teachable Machine Demo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 20px;
+    }
+    #webcam {
+      border: 2px solid #333;
+      border-radius: 8px;
+      margin: 10px;
+    }
+    #label {
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+      margin: 10px;
+    }
+    #debug {
+      font-size: 12px;
+      color: #666;
+      text-align: left;
+      margin: 10px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      background: #f9f9f9;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+    .error {
+      color: red;
+      font-weight: bold;
+    }
+    .success {
+      color: green;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Teachable Machine 识别测试</h1>
+  <div id="webcam"></div>
+  <p id="label">Loading...</p>
+  <div id="debug"></div>
+  
+  <!-- 使用更稳定的版本 -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.8.6/dist/tf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8.4/dist/teachablemachine-image.min.js"></script>
+  
+  <script>
+    const URL = "model/";
+    let model, webcam, labelContainer, debugContainer;
+
+    function log(message, type = 'info') {
+      console.log(message);
+      if (debugContainer) {
+        const className = type === 'error' ? 'error' : type === 'success' ? 'success' : '';
+        debugContainer.innerHTML += `<span class="${className}">${new Date().toLocaleTimeString()}: ${message}</span><br>`;
+      }
+    }
+
+    async function checkModelFiles() {
+      try {
+        log("检查模型文件...");
+        
+        // 检查metadata.json
+        const metadataResponse = await fetch('model/metadata.json');
+        if (!metadataResponse.ok) {
+          throw new Error(`无法访问metadata.json: ${metadataResponse.status}`);
+        }
+        const metadata = await metadataResponse.json();
+        log(`✅ metadata.json加载成功，标签: ${metadata.labels.join(', ')}`);
+        
+        // 检查model.json
+        const modelResponse = await fetch('model/model.json');
+        if (!modelResponse.ok) {
+          throw new Error(`无法访问model.json: ${modelResponse.status}`);
+        }
+        log("✅ model.json可以访问");
+        
+        // 检查weights.bin
+        const weightsResponse = await fetch('model/weights.bin');
+        if (!weightsResponse.ok) {
+          throw new Error(`无法访问weights.bin: ${weightsResponse.status}`);
+        }
+        log("✅ weights.bin可以访问");
+        
+        return true;
+      } catch (error) {
+        log(`❌ 模型文件检查失败: ${error.message}`, 'error');
+        return false;
+      }
+    }
+
+    async function init() {
+      debugContainer = document.getElementById("debug");
+      labelContainer = document.getElementById("label");
+      
+      log("开始初始化...");
+      
+      // 首先检查模型文件
+      const filesOk = await checkModelFiles();
+      if (!filesOk) {
+        labelContainer.innerHTML = "模型文件检查失败，请检查文件路径";
+        return;
+      }
+      
+      const modelURL = URL + "model.json";
+      const metadataURL = URL + "metadata.json";
+      
+      log("模型URL: " + modelURL);
+      log("元数据URL: " + metadataURL);
+
+      try {
+        log("正在加载模型...");
+        model = await tmImage.load(modelURL, metadataURL);
+        log("✅ 模型加载成功！", 'success');
+        
+        log("正在初始化摄像头...");
+        webcam = new tmImage.Webcam(300, 225, true);
+        await webcam.setup();
+        log("✅ 摄像头设置完成", 'success');
+        
+        await webcam.play();
+        log("✅ 摄像头开始播放", 'success');
+        
+        document.getElementById("webcam").appendChild(webcam.canvas);
+        log("✅ Canvas已添加到页面", 'success');
+        
+        window.requestAnimationFrame(loop);
+        log("✅ 开始预测循环", 'success');
+        
+      } catch (error) {
+        console.error("初始化失败:", error);
+        log(`❌ 错误: ${error.message}`, 'error');
+        document.getElementById("label").innerHTML = "模型加载失败: " + error.message;
+      }
+    }
+
+    async function loop() {
+      try {
+        webcam.update();
+        const prediction = await model.predict(webcam.canvas);
+        prediction.sort((a, b) => b.probability - a.probability);
+        labelContainer.innerHTML = prediction[0].className + " : " + prediction[0].probability.toFixed(2);
+
+        window.requestAnimationFrame(loop);
+      } catch (error) {
+        console.error("预测循环错误:", error);
+        log(`❌ 预测错误: ${error.message}`, 'error');
+        labelContainer.innerHTML = "预测失败: " + error.message;
+      }
+    }
+
+    // 页面加载完成后开始初始化
+    window.addEventListener('load', function() {
+      log("页面加载完成");
+      init();
+    });
+  </script>
+</body>
+</html>
