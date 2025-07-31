@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>人物迁徙 - demo展示</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* 防止页面滚动 */
+            background-color: #f0f0f0;
+            font-family: 'Arial', sans-serif;
+        }
+        .info {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            z-index: 1000;
+            max-width: 300px;
+        }
+        .info h3 {
+            margin: 0 0 10px 0;
+            color: #333;
+        }
+        .info p {
+            margin: 5px 0;
+            font-size: 14px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="info">
+        <h3>人物迁徙 - demo展示</h3>
+        <p>• 使用鼠标滚轮横向滚动</p>
+        <p>• 鼠标悬停查看交互效果</p>
+        <p>• 单个无缝画布，宽度5760px</p>
+        <p>• 90个元素均匀分布</p>
+        <p>• 上传6张图片替换六种颜色彩方并将其命名为imga~imgf/p>
+    </div>
+    <main></main>
+    <script src="sketch.js"></script>
+</body>
+</html>
